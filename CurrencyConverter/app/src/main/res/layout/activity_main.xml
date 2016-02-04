@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/input_label"
+        android:id="@+id/inputLabel"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/input"
+        android:layout_below="@+id/inputLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eur_usd_button"
+        android:id="@+id/USD_EUR_Button"
+        android:onClick="convUSDtoEUR"
+        android:layout_marginTop="37dp"
+        android:layout_marginRight="40dp"
+        android:layout_below="@+id/input"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usd_eur_button"
+        android:id="@+id/EUR_USD_Button"
+        android:onClick="convEURtoUSD"
+        android:nestedScrollingEnabled="true"
+        android:layout_marginLeft="40dp"
+        android:layout_alignTop="@+id/USD_EUR_Button" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/output"
+        android:textSize="30sp"
+        android:layout_below="@+id/EUR_USD_Button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:minWidth="100sp"
+        android:textAlignment="center"
+        android:translationZ="1dp" />
+
+</RelativeLayout>
