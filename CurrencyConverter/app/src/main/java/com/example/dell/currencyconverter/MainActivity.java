@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         try {
             double usd = Double.parseDouble(input.getText().toString()) * 1.108625;
             if ((double)((int)(usd*100))/100 == (int)(usd)) {
-                output.setText("€ "+(int)(usd)+",-");
+                output.setText("$ "+(int)(usd)+",-");
             } else {
-                output.setText("€ "+String.format("%.2f", usd));
+                output.setText("$ "+String.format("%.2f", usd));
             }
         }
         catch (NumberFormatException e) {}
