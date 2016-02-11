@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:max="5000"
+        android:progress="4000"
+        android:indeterminate="false"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/fastTextView"
+        android:layout_toRightOf="@+id/slowTextView"
+        android:layout_toEndOf="@+id/slowTextView"
+        android:layout_toStartOf="@id/fastTextView"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/homerImg"
+        android:src="@drawable/homer"
+        android:layout_below="@+id/seekBar"
+        android:layout_above="@+id/radioGroup"
+        android:onClick="animate"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/bartImg"
+        android:src="@drawable/bart"
+        android:layout_alignTop="@+id/homerImg"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="animate"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fade"
+            android:id="@+id/fadeRadioButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:checked="true"
+            android:layout_weight="0.33"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="move"
+            android:id="@+id/moveRadioButton"
+            android:layout_above="@+id/fadeRadioButton"
+            android:layout_alignRight="@+id/fadeRadioButton"
+            android:layout_alignEnd="@+id/fadeRadioButton"
+            android:checked="false"
+            android:layout_weight="0.33"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rotate"
+            android:id="@+id/rotateRadioButton"
+            android:layout_above="@+id/moveRadioButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:layout_weight="0.33"
+            />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Slow"
+        android:id="@+id/slowTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:nestedScrollingEnabled="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Fast"
+        android:id="@+id/fastTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/speedTextView"
+        android:layout_below="@+id/slowTextView"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
