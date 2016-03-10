@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Brain Trainer</string>
+    <string name="title_activity_brain_trainer">BrainTrainerActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+</resources>

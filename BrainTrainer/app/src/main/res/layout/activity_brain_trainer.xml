@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.dell.braintrainer.BrainTrainerActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textsGridLayout"
+        android:rowCount="1"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:background="#ffd77a">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30.0"
+            android:id="@+id/timerTextView"
+            android:textSize="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000/000"
+            android:id="@+id/progressTextView"
+            android:textSize="24dp"
+            android:layout_gravity="right"/>
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 + 2 ="
+        android:id="@+id/sumTextView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textsGridLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="#333333"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:id="@+id/buttonsGridLayout"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:id="@+id/button1"
+            android:onClick="play"
+            android:background="#28ff82"
+            android:textSize="36dp"
+            android:textColor="#222222"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:id="@+id/button2"
+            android:onClick="play"
+            android:background="#2ebdff"
+            android:textSize="36dp"
+            android:textColor="#222222"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:id="@+id/button3"
+            android:onClick="play"
+            android:background="#e388ff"
+            android:textSize="36dp"
+            android:textColor="#222222"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            android:id="@+id/button4"
+            android:onClick="play"
+            android:background="#ff5e9c"
+            android:textSize="36dp"
+            android:textColor="#222222"/>
+    </GridLayout>
+
+
+</RelativeLayout>
