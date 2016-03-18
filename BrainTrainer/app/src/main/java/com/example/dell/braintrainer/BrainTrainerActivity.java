@@ -58,7 +58,7 @@ public class BrainTrainerActivity extends AppCompatActivity {
                 int option;
                 boolean optionTaken = false;
                 do {
-                    option = (int)(Math.random()*50)+1;
+                    option = (int)(Math.random()*100)+1;
                     for (int item : optionArray) {
                         if (item == option) {
                             optionTaken = true;
