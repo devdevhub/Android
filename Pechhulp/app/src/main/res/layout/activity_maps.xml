@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="com.example.dell.pechhulp.MapsActivity"
+    android:backgroundTintMode="screen">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:map="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/map"
+              android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:background="@color/colorPrimary"
+        android:text="Bel RSR nu"
+        android:textColor="#FFFFFF"
+        android:width="275dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="notifyPhoneCosts"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/notification"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/filter"
+            android:background="#000000"
+            android:alpha="0.6"
+            android:visibility="gone"/>
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:text="Annuleren"
+            android:id="@+id/cancelButton"
+            android:onClick="cancelCall"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:textSize="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_above="@+id/relativeLayout"
+            android:layout_alignStart="@+id/relativeLayout"/>
+
+        <RelativeLayout
+            android:layout_width="275dp"
+            android:layout_height="200dp"
+            android:id="@+id/relativeLayout"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="275dp"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent"
+                android:alpha="0.85"
+                android:id="@+id/imageView2"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Belkosten"
+                android:id="@+id/title"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:layout_marginTop="27dp"
+                android:alpha="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voor dit nummer betaalt u uw gebruikelijke belkosten."
+                android:id="@+id/text"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="29dp"
+                android:alpha="1"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bel nu"
+                android:id="@+id/callButton"
+                android:background="@color/colorPrimary"
+                android:textColor="#FFFFFF"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:width="265dp"
+                android:alpha="1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:onClick="call"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>
