@@ -2,6 +2,9 @@ package com.example.dell.pechhulp;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -14,13 +17,17 @@ import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -66,15 +73,72 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        styleButton(R.id.button, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_tel), 70, 70));
-        styleButton(R.id.callButton, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_phone), 70, 70));
-        styleButton(R.id.cancelButton, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_close), 30, 30));
+        putDrawableOnButton(R.id.button, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_tel), 70, 70));
+        putDrawableOnButton(R.id.callButton, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_phone), 70, 70));
+        putDrawableOnButton(R.id.cancelButton, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_close), 30, 30));
+
+        LocationManager lm = (LocationManager)(getSystemService(LOCATION_SERVICE));
+        //Display message if there is no internet connection
+        if (!isNetworkConnected() && !isFinishing()) {
+            noInternetDialog();
+        }
+        else if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            noLocationDialog();
+        }
     }
 
-    private void styleButton(int buttonID, Drawable icon) {
+    private void noInternetDialog() {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(R.string.message_no_internet).setTitle("Geen internetverbinding");
+            builder.setNegativeButton("Annuleren", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Probeer opnieuw", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    noInternetDialog();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void noLocationDialog() {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(R.string.message_no_location).setTitle("Locatieservices uitgeschakeld");
+            builder.setNegativeButton("Annuleren", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Ga naar instellingen", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isNetworkConnected() {
+        NetworkInfo networkInfo = ((ConnectivityManager)(getSystemService(Context.CONNECTIVITY_SERVICE))).getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+    private void putDrawableOnButton(int buttonID, Drawable icon) {
         Button button = (Button) (findViewById(buttonID));
         button.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-        button.setTransformationMethod(null);
     }
 
     private Drawable resize(Drawable drawable, int width, int height) {

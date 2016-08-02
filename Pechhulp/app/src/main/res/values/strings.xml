@@ -4,4 +4,6 @@
     <string name="title_activity_about">Over RSR</string>
     <string name="about_text">Met de hulpmiddelen van RSR blijft u mobiel. RSR is de leverancier van hulpmiddelen in de regio Noordoost-Nederland. Gedegen kennis en jarenlange ervaring zit in ons DNA verweven en leidt tot het beste advies.\n\nWilt u meer weten over onze producten en diensten, kijk dan op <a href="http://www.rsr.nl">www.rsr.nl</a> of bezoek onze showrooms in Silvolde en Nieuwleusen. We zijn iedere werkdag geopend van 8.00 tot 17.00 uur. Hier kunt u diverse hulpmiddelen uitproberen en rustig bekijken wat goed bij uw situatie aansluit. Samen met u zoeken we naar het hulpmiddel dat bij u past. RSR maakt mensen mobiel.</string>
     <string name="title_activity_maps">RSR Pechhulp</string>
+    <string name="message_no_internet">Er is geen verbinding mogelijk met het internet. Hierdoor kunnen uw locatiegegevens niet worden opgehaald.</string>
+    <string name="message_no_location">RSR pechhulp heeft toegang tot uw locatie nodig. Schakel locatietoegang in.</string>
 </resources>

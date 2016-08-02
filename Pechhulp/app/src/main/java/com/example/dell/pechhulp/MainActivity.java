@@ -10,11 +10,14 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,21 +37,59 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle(getResources().getString(R.string.title_activity_main));
         setTaskDescription(new ActivityManager.TaskDescription(null, null, Color.LTGRAY));
 
-        styleButton(R.id.button, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_warning), 80, 70));
+        putDrawableOnButton(R.id.button, resize(ContextCompat.getDrawable(getApplicationContext(), R.drawable.main_btn_warning), 80, 70));
 
-        //Display message if there is no internet connection.. *doesn't work, somehow*
-        if (!isNetworkConnected()) {
-            try {
-                if(!isFinishing()) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                    builder.setMessage("message").setTitle("title");
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+        LocationManager lm = (LocationManager)(getSystemService(LOCATION_SERVICE));
+        //Display message if there is no internet connection
+        if (!isNetworkConnected() && !isFinishing()) {
+            noInternetDialog();
+        }
+        else if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            noLocationDialog();
+        }
+    }
+
+    private void noInternetDialog() {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(R.string.message_no_internet).setTitle("Geen internetverbinding");
+            builder.setNegativeButton("Annuleren", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
                 }
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
+            });
+            builder.setPositiveButton("Probeer opnieuw", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    noInternetDialog();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void noLocationDialog() {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
+            builder.setMessage(R.string.message_no_location).setTitle("Locatieservices uitgeschakeld");
+            builder.setNegativeButton("Annuleren", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            });
+            builder.setPositiveButton("Ga naar instellingen", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -57,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
-    private void styleButton(int buttonID, Drawable icon) {
+    private void putDrawableOnButton(int buttonID, Drawable icon) {
         Button button = (Button)(findViewById(buttonID));
         button.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
-        button.setTransformationMethod(null);
     }
 
     private Drawable resize(Drawable drawable, int width, int height) {

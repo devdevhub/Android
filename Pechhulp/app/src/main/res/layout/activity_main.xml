@@ -15,14 +15,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:background="@drawable/main_btn_bg"
         android:text="RSR Pechhulp"
-        android:textColor="#FFFFFF"
-        android:width="275dp"
+        android:textColor="@color/colorTextMain"
+        android:width="@dimen/button_width"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="startMapsActivity"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"/>
+        android:paddingLeft="@dimen/button_horizontal_padding"
+        android:paddingRight="@dimen/button_horizontal_padding"
+        />
 
 </RelativeLayout>
